@@ -5,6 +5,34 @@
 // STEPS TO TAKE:
 
 // 1. Make sure manual slider works when we press left or right buttons.
+var rightBtn = document.querySelector(".btn-right");
+var leftBtn = document.querySelector(".btn-left");
+var img = document.querySelector(".img-container");
+
+var imgIndex = 0;
+rightBtn.addEventListener("click", function () {
+  if (imgIndex < 4) {
+    // console.log(imgIndex);
+    imgIndex++;
+    // console.log(imgIndex);
+    img.style.backgroundImage = `url("./img/contBcg-${imgIndex}.jpeg")`;
+  } else {
+    imgIndex = 0;
+    img.style.backgroundImage = `url("./img/contBcg-${imgIndex}.jpeg")`;
+  }
+  console.log(imgIndex);
+});
+
+leftBtn.addEventListener("click", function () {
+  if (imgIndex > 0) {
+    imgIndex--;
+    img.style.backgroundImage = `url("./img/contBcg-${imgIndex}.jpeg")`;
+  } else {
+    imgIndex = 4;
+    img.style.backgroundImage = `url("./img/contBcg-${imgIndex}.jpeg")`;
+  }
+  console.log(imgIndex);
+});
 
 // 2. Make sure you see each car's name on top of the each image. The names should change when you click left or right buttons accordingly.
 

@@ -50,7 +50,11 @@ images.forEach(img =>{
 
 let counter = 1;
 iconRight.addEventListener("click", function(){
-    imageContainer.style.background = "url(images[counter])";
+    if(counter === 5){
+        counter=0;
+    }
+    imageContainer.style.backgroundImage = `url(${images[counter]})`;
+    counter++;
 })
 
 

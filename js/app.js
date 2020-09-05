@@ -5,20 +5,70 @@
 // STEPS TO TAKE:
 
 // 1. Make sure manual slider works when we press left or right buttons.
+var cars = [
+  {
+    id: 0,
+    title: "Mercedes BENZ AMG",
+    model: "C 43",
+    info: "AMG-enhanced 3.0L V6 biturbo",
+    imgUrl: "url(./img/contBcg-0.jpeg)",
+  },
+  {
+    id: 1,
+    title: "Mercedes BENZ AMG",
+    model: "E 63 S",
+    info: "Handcrafted AMG 4.0L V8 biturbo",
+    imgUrl: "url(./img/contBcg-1.jpeg)",
+  },
+  {
+    id: 2,
+    title: "BMW",
+    model: "M550i",
+    info: "4.4-liter BMW M TwinPower Turbo V-8 engine",
+    imgUrl: "url(./img/contBcg-2.jpeg)",
+  },
+  {
+    id: 3,
+    title: "AUDI",
+    model: "TT RS Coupe Trims",
+    info: "2.5-liter five-cylinder",
+    imgUrl: "url(./img/contBcg-3.jpeg)",
+  },
+  {
+    id: 4,
+    title: "Dodge Challenger",
+    model: "SRT Hellcat",
+    info: "6.2-liter v8 OHV",
+    imgUrl: "url(./img/contBcg-4.jpeg)",
+  },
+];
+
 var rightBtn = document.querySelector(".btn-right");
 var leftBtn = document.querySelector(".btn-left");
 var img = document.querySelector(".img-container");
+var title = document.querySelector(".car-name");
+
+function slideShow(data, index) {
+  data.forEach(function (car, i) {
+    if (index === i) {
+      img.style.backgroundImage = car.imgUrl;
+      title.textContent = car.title;
+    }
+    // console.log(car);
+  });
+}
 
 var imgIndex = 0;
+slideShow(cars, imgIndex);
 rightBtn.addEventListener("click", function () {
   if (imgIndex < 4) {
     // console.log(imgIndex);
     imgIndex++;
     // console.log(imgIndex);
-    img.style.backgroundImage = `url("./img/contBcg-${imgIndex}.jpeg")`;
+    slideShow(cars, imgIndex);
   } else {
     imgIndex = 0;
-    img.style.backgroundImage = `url("./img/contBcg-${imgIndex}.jpeg")`;
+    slideShow(cars, imgIndex);
   }
   console.log(imgIndex);
 });
@@ -26,10 +76,10 @@ rightBtn.addEventListener("click", function () {
 leftBtn.addEventListener("click", function () {
   if (imgIndex > 0) {
     imgIndex--;
-    img.style.backgroundImage = `url("./img/contBcg-${imgIndex}.jpeg")`;
+    slideShow(cars, imgIndex);
   } else {
     imgIndex = 4;
-    img.style.backgroundImage = `url("./img/contBcg-${imgIndex}.jpeg")`;
+    slideShow(cars, imgIndex);
   }
   console.log(imgIndex);
 });

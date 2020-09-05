@@ -41,14 +41,16 @@ images.forEach(img =>{
 
 });
 
-images.forEach(img => {
-    var imgTag = document.createElement('img');
-    imageContainer.appendChild(imgTag);
-    imgTag.setAttribute("src", img);
+// images.forEach(img => {
+//     var imgTag = document.createElement('img');
+//     imageContainer.appendChild(imgTag);
+//     imgTag.setAttribute("src", img);
 
-});
+// });
 
-
-
+let counter = 1;
+iconRight.addEventListener("click", function(){
+    imageContainer.style.background = "url(images[counter])";
+})
 
 

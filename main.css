@@ -14,12 +14,12 @@ body {
  
 }
 .img-container {
-  display: flex;
-  /* justify-content: center; */
-  overflow: hidden;
-  /* min-width: 100vw; */
+  /* display: flex; */
+ 
+  
+ 
   min-height: 60vh;
-  /* background: url('./img/contBcg-0.jpeg') center/cover no-repeat; */
+  background: url('./img/contBcg-0.jpeg') center/cover no-repeat;
   border: 0.1rem solid var(--mainBlue);
   border-bottom: 1rem solid var(--mainBlue);
   border-radius: 1rem;

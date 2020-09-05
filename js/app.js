@@ -43,11 +43,15 @@ var cars = [
   },
 ];
 
+// GET DOM ELEMENTS
 var rightBtn = document.querySelector(".btn-right");
 var leftBtn = document.querySelector(".btn-left");
 var img = document.querySelector(".img-container");
 var title = document.querySelector(".car-name");
+var playBtn = document.querySelector("#playBtn");
+var stopBtn = document.querySelector("#stopBtn");
 
+// HELPER FUNCTIONS
 function slideShow(data, index) {
   data.forEach(function (car, i) {
     if (index === i) {
@@ -58,9 +62,17 @@ function slideShow(data, index) {
   });
 }
 
-var imgIndex = 0;
-slideShow(cars, imgIndex);
-rightBtn.addEventListener("click", function () {
+function prevSlide() {
+  if (imgIndex > 0) {
+    imgIndex--;
+    slideShow(cars, imgIndex);
+  } else {
+    imgIndex = 4;
+    slideShow(cars, imgIndex);
+  }
+}
+
+function nextSlide() {
   if (imgIndex < 4) {
     // console.log(imgIndex);
     imgIndex++;
@@ -70,19 +82,29 @@ rightBtn.addEventListener("click", function () {
     imgIndex = 0;
     slideShow(cars, imgIndex);
   }
-  console.log(imgIndex);
-});
+}
 
-leftBtn.addEventListener("click", function () {
-  if (imgIndex > 0) {
-    imgIndex--;
-    slideShow(cars, imgIndex);
-  } else {
-    imgIndex = 4;
-    slideShow(cars, imgIndex);
-  }
-  console.log(imgIndex);
-});
+var playSlide = null;
+function playSlideShow() {
+  playSlide = setInterval(nextSlide, 1000);
+}
+
+function stopSlideShow() {
+  clearInterval(playSlide);
+}
+
+// FIRST SLIDE BY DEFAULT
+var imgIndex = 0;
+slideShow(cars, imgIndex);
+
+// EVENT LISTENERS
+rightBtn.addEventListener("click", nextSlide);
+
+leftBtn.addEventListener("click", prevSlide);
+
+playBtn.addEventListener("click", playSlideShow);
+
+stopBtn.addEventListener("click", stopSlideShow);
 
 // 2. Make sure you see each car's name on top of the each image. The names should change when you click left or right buttons accordingly.
 

@@ -48,6 +48,12 @@ imageContainer.addEventListener('click', (e) => {
         }
     } else if (e.target.id == 'icon-left') {
         imageContainer.style.background = "url('./img/contBcg-" + sliderCountEnd + ".jpeg') center/cover no-repeat";
+
+        for(let i = 0; i < cars.length; i++) {
+            carouselItems[i].style.border = 'none';
+        }
+        carouselItems[sliderCountEnd].style.border = '5px solid red';
+
         sliderCountEnd--;
 
         if (sliderCountEnd == -1) {

@@ -1,49 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --mainWhite: #f2fdff;
   --mainBlue: #3e92cc;
 }
-.max-height {
+/* .max-height {
   min-height: 100vh;
-}
+} */
 body {
   background: var(--mainWhite);
   padding: 0 15px;
 }
 .container {
   text-align: center;
+  height: 100vh;
 }
 .img-container {
-  min-height: 60vh;
+  min-height: 40vh;
   background: url('./img/contBcg-0.jpeg') center/cover no-repeat;
   border: 0.1rem solid var(--mainBlue);
   border-bottom: 1rem solid var(--mainBlue);
   border-radius: 1rem;
   position: relative;
 }
-@media screen and (min-width: 768px) {
-  .img-container {
-    min-height: 80vh;
-  }
+
+.text {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  color: black;
+  background-color: white;
+  padding: 10px 20px;
+  font-family: arial, sans-serif;
+  letter-spacing: 1px;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 3px lightskyblue;
 }
-.btn-left {
+
+.btn-left, .btn-right {
   position: absolute;
   top: 50%;
+  cursor: pointer;
+}
+.btn-left {
   left: 0;
   transform: translate(-50%, -50%);
 }
 .btn-right {
-  position: absolute;
-  top: 50%;
   right: 0;
   transform: translate(50%, -50%);
 }
-#icon-left,
-#icon-right {
+#icon-left, #icon-right {
   border: 1px solid var(--mainBlue);
-  border-radius: 100%;
+  border-radius: 50%;
+  margin: 0 7px
 }
-#icon-left:hover,
-#icon-right:hover {
+#icon-left:hover, #icon-right:hover {
   border-color: var(--mainWhite);
 }
 .play-wrapper {
@@ -51,8 +66,7 @@ body {
   border-bottom: 1px solid gray;
   color: gray;
 }
-#playBtn,
-#stopBtn {
+#playBtn, #stopBtn {
   margin: 0.2rem;
   cursor: pointer;
 }
@@ -63,11 +77,31 @@ body {
 
 .carousel {
   margin-top: 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 170px;
+  white-space: nowrap;
+  padding: 10px 0;
 }
 .carousel img {
   width: 200px;
   height: 120px;
-  margin: auto 20px;
+  margin: auto 10px;
   border-radius: 5px;
   border: 1px solid var(--mainBlue);
+  vertical-align: top;
+}
+
+.carousel img:hover {
+  box-shadow: 0 0 5px 5px #3d92cc;
+}
+
+.active {
+  box-shadow: 0 0 5px 5px #a83e23;
+}
+
+@media screen and (min-width: 768px) {
+  .img-container {
+    min-height: 80vh;
+  }
 }

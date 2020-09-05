@@ -82,13 +82,12 @@ if(bgImgData.length > 0){
 }
 
 var count = 1;
+var timerCount = 0, timerClear;
 
 containerDiv.addEventListener('click', function(event){
     
     var imgDataId = event.target.getAttribute('data-id');
     if(imgDataId !== null){
-        console.log(imgDataId)
-        console.log(event.target.className)
         carName.textContent = keysBgImgData[imgDataId].name
         imgContainer.style.background = "url('"+keysBgImgData[imgDataId].imageUrl+"') center/cover no-repeat"
         carOverlapName.textContent = keysBgImgData[imgDataId].name
@@ -121,10 +120,21 @@ containerDiv.addEventListener('click', function(event){
     }
     
     if(event.target.getAttribute('id') === 'playBtn'){
-        console.log('play button is clicked');
+        timerClear = setInterval(setImgInterval, 1500);
     }
     if(event.target.getAttribute('id') === 'stopBtn'){
-        console.log('stop button is clicked');
+        clearInterval(timerClear)
     }
 
 })
+
+function setImgInterval(){
+    console.log(timerCount)
+    timerCount++;
+    carName.textContent = keysBgImgData[timerCount].name
+    imgContainer.style.background = "url('"+keysBgImgData[timerCount].imageUrl+"') center/cover no-repeat"
+    carOverlapName.textContent = keysBgImgData[timerCount].name
+    if(timerCount > bgImgData.length-1){
+        timerCount = 0
+    }
+}

@@ -13,3 +13,4 @@
 // 4. Optional: You can show all images in small format under main image and store them inside "carousel" div.
 // This option is very broad that you can im plement so that when each small images clicked show it on main image div.
 // You can even implement border highlight(or any other effect) to specific small image when it is active on main div.
+//

@@ -32,7 +32,7 @@ var bgImgData = [
     },
     {
         id: 4,
-        name: 'Audi',
+        name: 'Audi R8 V10',
         imageUrl: './img/audi.png'
     },
     {
@@ -42,18 +42,18 @@ var bgImgData = [
     },
     {
         id: 6,
-        name: 'BMW',
-        imageUrl: './img/bmw.png'
+        name: 'Lamborghini Aventador',
+        imageUrl: './img/lamborghini.png'
     },
     {
         id: 7,
-        name: 'BMW',
-        imageUrl: './img/bmw.png'
+        name: 'Porsche Gt3',
+        imageUrl: './img/porsche.png'
     },
     {
         id: 8,
-        name: 'BMW',
-        imageUrl: './img/bmw.png'
+        name: 'Nissan GT-R',
+        imageUrl: './img/nissan.png'
     }
 ]
 
@@ -81,28 +81,45 @@ if(bgImgData.length > 0){
     carName.textContent = 'There is no car images'
 }
 
-var count = 0
+var count = 1;
 
 containerDiv.addEventListener('click', function(event){
     
     var imgDataId = event.target.getAttribute('data-id');
     if(imgDataId !== null){
+        console.log(imgDataId)
+        console.log(event.target.className)
         carName.textContent = keysBgImgData[imgDataId].name
         imgContainer.style.background = "url('"+keysBgImgData[imgDataId].imageUrl+"') center/cover no-repeat"
         carOverlapName.textContent = keysBgImgData[imgDataId].name
     }
-    if(event.target.getAttribute('id') === 'icon-left'){
-            count++
-            carName.textContent = keysBgImgData[count].name
-            imgContainer.style.background = "url('"+keysBgImgData[count].imageUrl+"') center/cover no-repeat"
-            carOverlapName.textContent = keysBgImgData[count].name
-            if(count > bgImgData.length-1){
-                count = 0
-            }
-    }
     if(event.target.getAttribute('id') === 'icon-right'){
-        console.log('right button is clicked')
+        carName.textContent = keysBgImgData[count].name
+        imgContainer.style.background = "url('"+keysBgImgData[count].imageUrl+"') center/cover no-repeat"
+        carOverlapName.textContent = keysBgImgData[count].name
+        for(var item of carouselContent.children){
+            item.classList.remove('active')
+        }
+        carouselContent.children[count-1].setAttribute('class', 'active')
+        count++
+        if(count > bgImgData.length){
+            count = 1
+        }
     }
+    if(event.target.getAttribute('id') === 'icon-left'){
+        if(count <= 0){
+            count = bgImgData.length
+        }
+        carName.textContent = keysBgImgData[count].name
+        imgContainer.style.background = "url('"+keysBgImgData[count].imageUrl+"') center/cover no-repeat"
+        carOverlapName.textContent = keysBgImgData[count].name
+        for(var item of carouselContent.children){
+            item.classList.remove('active')
+        }
+        carouselContent.children[count-1].setAttribute('class', 'active')
+        count--
+    }
+    
     if(event.target.getAttribute('id') === 'playBtn'){
         console.log('play button is clicked');
     }

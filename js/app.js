@@ -30,13 +30,19 @@ let sliderCountEnd = 4;
 let playBtn = document.querySelector('#playBtn');
 let stopBtn = document.querySelector('#stopBtn');
 let carousel = document.querySelector('.carousel');
+let carouselItems = carousel.children;
 
 imageContainer.addEventListener('click', (e) => {
 
     if (e.target.id == 'icon-right') {
         imageContainer.style.background = "url('./img/contBcg-" + sliderCountStart + ".jpeg') center/cover no-repeat";
-        sliderCountStart++;
+    
+        for(let i = 0; i < cars.length; i++) {
+            carouselItems[i].style.border = 'none';
+        }
+        carouselItems[sliderCountStart].style.border = '5px solid red';
 
+        sliderCountStart++;
         if (sliderCountStart == 5) {
             sliderCountStart = 0;
         }

@@ -11,14 +11,24 @@ body {
 }
 .container {
   text-align: center;
+ 
 }
 .img-container {
+  display: flex;
+  /* justify-content: center; */
+  overflow: hidden;
+  /* min-width: 100vw; */
   min-height: 60vh;
-  background: url('./img/contBcg-0.jpeg') center/cover no-repeat;
+  /* background: url('./img/contBcg-0.jpeg') center/cover no-repeat; */
   border: 0.1rem solid var(--mainBlue);
   border-bottom: 1rem solid var(--mainBlue);
   border-radius: 1rem;
   position: relative;
+  
+}
+.img-container img{
+  /* width: 100%; */
+ 
 }
 @media screen and (min-width: 768px) {
   .img-container {
@@ -65,6 +75,7 @@ body {
   margin-top: 10px;
 }
 .carousel img {
+  
   width: 200px;
   height: 120px;
   margin: auto 20px;

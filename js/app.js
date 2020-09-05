@@ -50,19 +50,23 @@ var cars = [
 var rightBtn = document.querySelector(".btn-right");
 var leftBtn = document.querySelector(".btn-left");
 var img = document.querySelector(".img-container");
-var title = document.querySelector(".car-name");
+var title = document.querySelector("#car-name");
+var model = document.querySelector("#car-model");
+var info = document.querySelector("#car-info");
 var playBtn = document.querySelector("#playBtn");
 var stopBtn = document.querySelector("#stopBtn");
 var carousel = document.querySelector(".carousel");
 
-// SHOW CAROUSEL IMAGES
-cars.forEach(function (car) {
-  var img = document.createElement("img");
-  img.setAttribute("data-id", car.id);
-  img.classList.add("carousel-img");
-  img.src = car.imgUrl;
-  carousel.appendChild(img);
-});
+// RENDER CAROUSEL IMAGES
+if (cars.length > 0) {
+  cars.forEach(function (car) {
+    var img = document.createElement("img");
+    img.setAttribute("data-id", car.id);
+    img.classList.add("carousel-img");
+    img.src = car.imgUrl;
+    carousel.appendChild(img);
+  });
+}
 
 var carouselImg = document.querySelectorAll(".carousel-img");
 
@@ -72,6 +76,8 @@ function slideShow(data, index) {
     if (index === i) {
       img.style.backgroundImage = `url(${car.imgUrl})`; //"url(./img/contBcg-4.jpeg)"
       title.textContent = car.title;
+      model.textContent = car.model;
+      info.textContent = car.info;
       carouselActiveImg(index);
     }
   });
@@ -89,9 +95,7 @@ function prevSlide() {
 
 function nextSlide() {
   if (imgIndex < 4) {
-    // console.log(imgIndex);
     imgIndex++;
-    // console.log(imgIndex);
     slideShow(cars, imgIndex);
   } else {
     imgIndex = 0;
@@ -101,11 +105,16 @@ function nextSlide() {
 
 var playSlide = null;
 function playSlideShow() {
-  playSlide = setInterval(nextSlide, 2000);
+  console.log(typeof playBtn.innerHTML);
+  if (playBtn.innerHTML.includes("fa-play")) {
+    playSlide = setInterval(nextSlide, 2000);
+    playBtn.innerHTML = "<i class='fas fa-pause'></i>";
+  }
 }
 
 function stopSlideShow() {
   clearInterval(playSlide);
+  playBtn.innerHTML = "<i class='fas fa-play'></i>";
 }
 
 function changeImg(e) {

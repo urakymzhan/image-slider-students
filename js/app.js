@@ -67,6 +67,7 @@ var stopButton = document.getElementById('stopBtn')
 var containerDiv = document.querySelector('.container')
 var carOverlapName = document.querySelector('.text')
 
+// CREATE A NEW DATA OBJECT OUT OF ARRAY (bgImgData) OF CARS
 var keysBgImgData = {};
 
 if(bgImgData.length > 0){
@@ -80,6 +81,21 @@ if(bgImgData.length > 0){
 } else {
     carName.textContent = 'There is no car images'
 }
+
+// OUTPUT OF keysBgImgData
+/* 
+keysBgImgData = {1: {…}, 2: {…}, 3: {…}, 4: {…}, 5: {…}, 6: {…}, 7: {…}, 8: {…}};
+keysBgImgData = {
+        1: {id: 1, name: "Bugatti", imageUrl: "./img/bugatti.png"},
+        2: {id: 2, name: "Mercedes Benz", imageUrl: "./img/mercedes.png"},
+        3: {id: 3, name: "Ferrari", imageUrl: "./img/ferrari.png"},
+        4: {id: 4, name: "Audi R8 V10", imageUrl: "./img/audi.png"},
+        5: {id: 5, name: "BMW", imageUrl: "./img/bmw.png"},
+        6: {id: 6, name: "Lamborghini Aventador", imageUrl: "./img/lamborghini.png"},
+        7: {id: 7, name: "Porsche Gt3", imageUrl: "./img/porsche.png"},
+        8: {id: 8, name: "Nissan GT-R", imageUrl: "./img/nissan.png"}
+}
+*/
 
 var count = 1;
 var timerCount = 0, timerClear;

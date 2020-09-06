@@ -14,6 +14,7 @@
 // This option is very broad that you can im plement so that when each small images clicked show it on main image div.
 // You can even implement border highlight(or any other effect) to specific small image when it is active on main div.
 
+// CREATE NEW ARRAY OF CARS
 var bgImgData = [
     {
         id: 1,
@@ -57,6 +58,7 @@ var bgImgData = [
     }
 ]
 
+// IMPORT HTML ELEMENTS TO JS
 var imgContainer = document.querySelector('.img-container');
 var carouselContent = document.querySelector('.carousel');
 var carName = document.querySelector('.car-name');
@@ -70,6 +72,7 @@ var carOverlapName = document.querySelector('.text')
 // CREATE A NEW DATA OBJECT OUT OF ARRAY (bgImgData) OF CARS
 var keysBgImgData = {};
 
+// MAKE SURE THAT ARRAY (bgImgData) OF CARS IS NOT EMPTY
 if(bgImgData.length > 0){
     bgImgData.forEach(function(item){
         keysBgImgData[item.id] = item;
@@ -100,14 +103,20 @@ keysBgImgData = {
 var count = 1;
 var timerCount = 0, timerClear;
 
+// ADD EVENT LISTENER TO THE WHOLE CONTAINER (event.currentTarget - WHERE THE EVENT IS LISTENED), (event.target - WHERE THE EVENT IS HAPPENED)
 containerDiv.addEventListener('click', function(event){
     
+    // GET data-id ATTRIBUTE FROM ANY CLICKED ELEMENT INSIDE THE ELEMENT WITH .container CLASS
     var imgDataId = event.target.getAttribute('data-id');
+
+    // MAKE SURE THAT CLICKED ELEMENT'S data-id IS NOT EQUAL TO null
     if(imgDataId !== null){
         carName.textContent = keysBgImgData[imgDataId].name
         imgContainer.style.background = "url('"+keysBgImgData[imgDataId].imageUrl+"') center/cover no-repeat"
         carOverlapName.textContent = keysBgImgData[imgDataId].name
     }
+
+    // THIS SECTION WILL KICK IN WHEN YOU PRESS "icon_right" BUTTON/ICON
     if(event.target.getAttribute('id') === 'icon-right'){
         carName.textContent = keysBgImgData[count].name
         imgContainer.style.background = "url('"+keysBgImgData[count].imageUrl+"') center/cover no-repeat"
@@ -121,6 +130,8 @@ containerDiv.addEventListener('click', function(event){
             count = 1
         }
     }
+
+    // THIS SECTION WILL KICK IN WHEN YOU PRESS "icon_left" BUTTON/ICON
     if(event.target.getAttribute('id') === 'icon-left'){
         if(count <= 0){
             count = bgImgData.length
@@ -135,21 +146,28 @@ containerDiv.addEventListener('click', function(event){
         count--
     }
     
+    // THIS SECTION WILL KICK IN WHEN YOU PRESS "playBtn" BUTTON/ICON
     if(event.target.getAttribute('id') === 'playBtn'){
-        timerClear = setInterval(setImgInterval, 1500);
+        timerClear = setInterval(setImgInterval, 2000);
     }
+
+    // THIS SECTION WILL KICK IN WHEN YOU PRESS "stopBtn" BUTTON/ICON
     if(event.target.getAttribute('id') === 'stopBtn'){
         clearInterval(timerClear)
     }
 
 })
 
+// THIS IS THE FUNCTION WHICH EXECUTES WHEN YOU PRESS "playBtn"
 function setImgInterval(){
-    console.log(timerCount)
     timerCount++;
     carName.textContent = keysBgImgData[timerCount].name
     imgContainer.style.background = "url('"+keysBgImgData[timerCount].imageUrl+"') center/cover no-repeat"
     carOverlapName.textContent = keysBgImgData[timerCount].name
+    for(var item of carouselContent.children){
+        item.classList.remove('active')
+    }
+    carouselContent.children[timerCount-1].setAttribute('class', 'active')
     if(timerCount > bgImgData.length-1){
         timerCount = 0
     }

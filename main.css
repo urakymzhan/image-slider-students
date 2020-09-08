@@ -15,9 +15,6 @@ body {
 }
 .img-container {
   /* display: flex; */
- 
-  
- 
   min-height: 60vh;
   background: url('./img/contBcg-0.jpeg') center/cover no-repeat;
   border: 0.1rem solid var(--mainBlue);
@@ -25,11 +22,9 @@ body {
   border-radius: 1rem;
   position: relative;
   
+  
 }
-.img-container img{
-  /* width: 100%; */
- 
-}
+
 @media screen and (min-width: 768px) {
   .img-container {
     min-height: 80vh;

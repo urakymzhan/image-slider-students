@@ -26,7 +26,7 @@ var iconLeft = document.querySelector('#icon-left');
 var iconRight = document.querySelector('#icon-right');
 var playWrapper = document.querySelector('.play-wrapper');
 var stopBtn = document.querySelector('.stopBtn');
-var playBtn = document.querySelector('.playBtn');
+var playBtn = document.querySelector('#playBtn');
 var carousel = document.querySelector('.carousel');
 
 var images = ['./img/contBcg-0.jpeg','./img/contBcg-1.jpeg','./img/contBcg-2.jpeg','./img/contBcg-3.jpeg','./img/contBcg-4.jpeg',];
@@ -48,13 +48,50 @@ images.forEach(img =>{
 
 // });
 
-let counter = 1;
+//function iconRightFunc(){
+    //debugger
+    function rightArrow(){
+var counter1 = 1;
 iconRight.addEventListener("click", function(){
-    if(counter === 5){
-        counter=0;
+    if(counter1 === 5){
+        counter1=0;
     }
+    imageContainer.style.backgroundImage = `url(${images[counter1]})`;
+    counter1++;
+});
+console.log(images[counter1]);
+return counter1;
+
+    }
+
+
+//left arrow function
+
+let counter2 = 1;
+iconLeft.addEventListener("click", function(){
+    if(counter2 < 0){
+        counter2 = images.length-1;
+    }
+    imageContainer.style.backgroundImage = `url(${images[counter2]})`;
+    counter2--;
+});
+
+function imgSlide(){
+ playBtn.addEventListener("click", function(){
+  
+    let counter = 0;
+        
     imageContainer.style.backgroundImage = `url(${images[counter]})`;
-    counter++;
-})
+    if(counter < images.length-1){
+        counter++;
+    }else{
+        counter = 0;
+    }
+    
+    
+    setTimeout("imgSlide()", 2000);
+});
+}
+    
 
 

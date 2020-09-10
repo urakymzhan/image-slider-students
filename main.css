@@ -7,19 +7,25 @@
 }
 body {
   background: var(--mainWhite);
-  padding: 0 15px;
+  padding: 30px auto;
 }
 .container {
   text-align: center;
 }
 .img-container {
   min-height: 60vh;
-  background: url('./img/contBcg-0.jpeg') center/cover no-repeat;
+  background-position: center;
+  background-size: cover;
   border: 0.1rem solid var(--mainBlue);
   border-bottom: 1rem solid var(--mainBlue);
   border-radius: 1rem;
   position: relative;
 }
+
+img.border {
+  border: 5px solid gold
+}
+
 @media screen and (min-width: 768px) {
   .img-container {
     min-height: 80vh;
@@ -28,13 +34,13 @@ body {
 .btn-left {
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 30px;
   transform: translate(-50%, -50%);
 }
 .btn-right {
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 30px;
   transform: translate(50%, -50%);
 }
 #icon-left,
@@ -63,6 +69,11 @@ body {
 
 .carousel {
   margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  width: 150px;
+  height: auto;
+  
 }
 .carousel img {
   width: 200px;

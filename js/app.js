@@ -102,4 +102,9 @@ for(let i = 0; i < cars.length; i++) {
 carousel.addEventListener('click', (e) => {
     console.log(e.target.id)
     imageContainer.style.background = "url('./img/contBcg-" + e.target.id + ".jpeg') center/cover no-repeat";
+
+    for(let i = 0; i < cars.length; i++) {
+        carouselItems[i].style.border = 'none';
+    }
+    carouselItems[Number(e.target.id)].style.border = '5px solid red';
 })

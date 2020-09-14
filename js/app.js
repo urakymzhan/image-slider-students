@@ -6,16 +6,16 @@ let leftBtnNode = document.querySelector("#icon-left");
 let carouselNode = document.querySelector(".carousel");
 let playBtn = document.querySelector("#playBtn");
 let stopBtn = document.querySelector("#stopBtn");
+let title = document.querySelector(".name")
 
 let vehicles = ["./img/contBcg-0.jpeg", "./img/contBcg-1.jpeg", "./img/contBcg-2.jpeg","./img/contBcg-4.jpeg"]
+let names = ["Mersedes", "Mersedes2", "close look", "BMW"]
 
 let slides = [];
 let activeIndex = 0;
 
 drawCarousel();
 drawActiveImage(activeIndex);
-clickRightBtn(activeIndex)
-clickLeftBtn(activeIndex)
 
 
 // FUNCTION FOR UI THE IMAGES IN THE CAROUSEL AND MAKE THEM CLICKABLE //
@@ -27,7 +27,7 @@ function drawCarousel() {
 
     oneImg.onclick = function () {
         drawActiveImage(index);
-                   
+          
     };
     carouselNode.appendChild(oneImg);
     
@@ -38,73 +38,61 @@ function drawCarousel() {
 // WHEN CLICK TO SINGLE IMAGE IN THE CAROUSEL, IT IS DISPLAYED AS MAIN IMG //
 function drawActiveImage(index) {
   imageNode.style.backgroundImage = `url(${vehicles[index]})`;
+  title.innerText = names[index]
+  let el = document.querySelector(".carousel").children
+  el[index].classList.toggle("active")  
   
 }
 
 
 
 // click to right btn
-function clickRightBtn() {
   rightBtnNode.addEventListener("click", function () {
     console.log("right is clicked")
-    changeActiveIndexRight(activeIndex++);
-    console.log(activeIndex)
-   return 
+    ++activeIndex;
+    if( activeIndex === 0){
+      activeIndex++
+    }
+  
+    if(activeIndex > vehicles.length-1){
+      activeIndex = 0
+    }
+  
+    drawActiveImage(activeIndex)
   });
-}
+
 
 // click to left btn
-function clickLeftBtn(index) {
     leftBtnNode.addEventListener("click", function () {
         console.log("left is clicked")
-        changeActiveIndexLeft(activeIndex--);
-        console.log(activeIndex)
-       return 
+        activeIndex--
+        if( activeIndex <= 0){
+          activeIndex =  vehicles.length-1
+      }
+      drawActiveImage(activeIndex) 
     });
-  }
+  
 
-// HELPER FUNCTION TO CHECK THE INDEX
-function changeActiveIndexRight(index){
-    drawActiveImage(index);
-     //   check i if is 0/
+
+
+
+playBtn.addEventListener("click", function(){
+  repeat = setInterval(function() {
+    ++activeIndex;
     if( activeIndex === 0){
-        activeIndex++
+      activeIndex++
     }
-
-    //if lastInd // negative
-    if ( activeIndex === -1 ){
-        activeIndex = 0
-    }
+  
     if(activeIndex > vehicles.length-1){
-        activeIndex = 0
+      activeIndex = 0
     }
-    return activeIndex
-    
-}
-function changeActiveIndexLeft(index){
-    drawActiveImage(index);
-     //   check i if is 0/
-    if( activeIndex < 0){
-        activeIndex =  vehicles.length-1
-    }
+  
+    drawActiveImage(activeIndex)
 
-    return activeIndex
-    
-}
+}, 1600);
+})
 
-playBtn.addEventListener("click", play)
-
-function play(){
-   repeat = setInterval(function() {
-      changeActiveIndexRight(activeIndex++);
-      console.log(activeIndex);
-
-  }, 1600);
-}
-
-stopBtn.addEventListener("click", stop)
-
-function stop(){
+stopBtn.addEventListener("click", function(){
   clearInterval(repeat);
- 
-}
+})
+

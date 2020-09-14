@@ -82,3 +82,15 @@ img.border {
   border-radius: 5px;
   border: 1px solid var(--mainBlue);
 }
+.name{
+  font-size: 22px;
+  color:rgb(209, 37, 37);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  text-align: center;
+  font-weight: 700;
+}
+
+.carousel img.active{
+  height: 140px;
+  box-shadow: 2px 5px 5px rgba(99, 24, 24, 0.3);
+}

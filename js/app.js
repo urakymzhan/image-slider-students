@@ -15,11 +15,11 @@
 // You can even implement border highlight(or any other effect) to specific small image when it is active on main div.
 
 let cars = [
-    "./img/contBcg-0.jpeg",
-    "./img/contBcg-1.jpeg",
-    "./img/contBcg-2.jpeg",
-    "./img/contBcg-3.jpeg",
-    "./img/contBcg-4.jpeg",
+  './img/contBcg-0.jpeg',
+  './img/contBcg-1.jpeg',
+  './img/contBcg-2.jpeg',
+  './img/contBcg-3.jpeg',
+  './img/contBcg-4.jpeg',
 ];
 
 let iconRight = document.querySelector('#icon-right');
@@ -32,79 +32,160 @@ let stopBtn = document.querySelector('#stopBtn');
 let carousel = document.querySelector('.carousel');
 let carouselItems = carousel.children;
 
-imageContainer.addEventListener('click', (e) => {
+// imageContainer.addEventListener('click', (e) => {
+//   if (e.target.id == 'icon-right') {
+//     imageContainer.style.background =
+//       "url('./img/contBcg-" +
+//       sliderCountStart +
+//       ".jpeg') center/cover no-repeat";
 
-    if (e.target.id == 'icon-right') {
-        imageContainer.style.background = "url('./img/contBcg-" + sliderCountStart + ".jpeg') center/cover no-repeat";
-    
-        for(let i = 0; i < cars.length; i++) {
-            carouselItems[i].style.border = 'none';
-        }
-        carouselItems[sliderCountStart].style.border = '5px solid red';
+//     for (let i = 0; i < cars.length; i++) {
+//       carouselItems[i].style.border = 'none';
+//     }
+//     carouselItems[sliderCountStart].style.border = '5px solid red';
 
-        sliderCountStart++;
-        if (sliderCountStart == 5) {
-            sliderCountStart = 0;
-        }
-    } else if (e.target.id == 'icon-left') {
-        imageContainer.style.background = "url('./img/contBcg-" + sliderCountEnd + ".jpeg') center/cover no-repeat";
+//     sliderCountStart++;
+//     if (sliderCountStart == 5) {
+//       sliderCountStart = 0;
+//     }
+//   } else if (e.target.id == 'icon-left') {
+//     imageContainer.style.background =
+//       "url('./img/contBcg-" + sliderCountEnd + ".jpeg') center/cover no-repeat";
 
-        for(let i = 0; i < cars.length; i++) {
-            carouselItems[i].style.border = 'none';
-        }
-        carouselItems[sliderCountEnd].style.border = '5px solid red';
+//     for (let i = 0; i < cars.length; i++) {
+//       carouselItems[i].style.border = 'none';
+//     }
+//     carouselItems[sliderCountEnd].style.border = '5px solid red';
 
-        sliderCountEnd--;
+//     sliderCountEnd--;
 
-        if (sliderCountEnd == -1) {
-            imageContainer.style.background = "url('./img/contBcg-" + 0 + ".jpeg') center/cover no-repeat";
-            sliderCountEnd = 4;
-        }
-    }
-})
+//     if (sliderCountEnd == -1) {
+//       imageContainer.style.background =
+//         "url('./img/contBcg-" + 0 + ".jpeg') center/cover no-repeat";
+//       sliderCountEnd = 4;
+//     }
+//   }
+// });
 
-function slideRight(index) {
-    imageContainer.style.background = "url('./img/contBcg-" + index + ".jpeg') center/cover no-repeat";
-    index++;
-}
+// function slideRight(index) {
+//   imageContainer.style.background =
+//     "url('./img/contBcg-" + index + ".jpeg') center/cover no-repeat";
+//   index++;
+// }
 
-playBtn.addEventListener('click', (e) => {
-    
-    let count = 0;
-    let right = setInterval((slideRight) => {     
-        imageContainer.style.background = "url('./img/contBcg-" + count + ".jpeg') center/cover no-repeat"; 
-        count++;
-        if(count == 5) {
-            count = 0;
-        }
-    }, 1000);
+// playBtn.addEventListener('click', (e) => {
+//   let count = 0;
+//   let right = setInterval((slideRight) => {
+//     imageContainer.style.background =
+//       "url('./img/contBcg-" + count + ".jpeg') center/cover no-repeat";
+//     count++;
+//     if (count == 5) {
+//       count = 0;
+//     }
+//   }, 1000);
 
-    stopBtn.addEventListener('click', (e) => {
-        clearInterval(right)
-    })
-})
+//   stopBtn.addEventListener('click', (e) => {
+//     clearInterval(right);
+//   });
+// });
+
+// function createCarouselBox(index) {
+//   let div = document.createElement('div');
+//   div.style.width = '250px';
+//   div.style.height = '200px';
+//   div.style.background =
+//     "url('./img/contBcg-" + index + ".jpeg') center/cover no-repeat";
+//   div.style.display = 'inline-block';
+//   div.style.margin = '0 10px';
+//   div.id = index;
+//   carousel.appendChild(div);
+// }
+
+// for (let i = 0; i < cars.length; i++) {
+//   createCarouselBox(i);
+// }
+
+// carousel.addEventListener('click', (e) => {
+//   console.log(e.target.id);
+//   imageContainer.style.background =
+//     "url('./img/contBcg-" + e.target.id + ".jpeg') center/cover no-repeat";
+
+//   for (let i = 0; i < cars.length; i++) {
+//     carouselItems[i].style.border = 'none';
+//   }
+//   carouselItems[Number(e.target.id)].style.border = '5px solid red';
+// });
+
+// ** ULAN'S NOTE ** YOUR CODE IS UP^
+// MY MODIFICATIONS BELOW
+
+let count = 0;
+let rightTimer;
 
 function createCarouselBox(index) {
-    let div = document.createElement('div');
-    div.style.width = '250px';
-    div.style.height = '200px';
-    div.style.background = "url('./img/contBcg-" + index + ".jpeg') center/cover no-repeat";
-    div.style.display = 'inline-block'
-    div.style.margin = '0 10px'
-    div.id = index;
-    carousel.appendChild(div);
+  let div = document.createElement('div');
+  div.style.width = '250px';
+  div.style.height = '200px';
+  div.style.background =
+    "url('./img/contBcg-" + index + ".jpeg') center/cover no-repeat";
+  div.style.display = 'inline-block';
+  div.style.margin = '0 10px';
+  div.id = index;
+  carousel.appendChild(div);
 }
+for (let i = 0; i < cars.length; i++) {
+  createCarouselBox(i);
+}
+// set inital border
+carouselItems[count].style.border = '5px solid red';
 
-for(let i = 0; i < cars.length; i++) {
-    createCarouselBox(i);
-}
+imageContainer.addEventListener('click', (e) => {
+  if (e.target.id == 'icon-right') {
+    count++;
+    if (count === cars.length) {
+      count = 0;
+    }
+    setBackgroundImage(count);
+    setBorder(count);
+  }
+  if (e.target.id == 'icon-left') {
+    if (count == 0) {
+      count = cars.length;
+    }
+    count--;
+    setBackgroundImage(count);
+    setBorder(count);
+  }
+});
+
+playBtn.addEventListener('click', (e) => {
+  rightTimer = setInterval(() => {
+    count++;
+    if (count == cars.length) {
+      count = 0;
+    }
+    setBorder(count);
+    setBackgroundImage(count);
+  }, 1000);
+});
+stopBtn.addEventListener('click', (e) => {
+  clearInterval(rightTimer);
+});
 
 carousel.addEventListener('click', (e) => {
-    console.log(e.target.id)
-    imageContainer.style.background = "url('./img/contBcg-" + e.target.id + ".jpeg') center/cover no-repeat";
+  count = e.target.id;
+  setBorder(count);
+  setBackgroundImage(count);
+});
 
-    for(let i = 0; i < cars.length; i++) {
-        carouselItems[i].style.border = 'none';
-    }
-    carouselItems[Number(e.target.id)].style.border = '5px solid red';
-})
+function setBorder(count) {
+  for (let i = 0; i < cars.length; i++) {
+    carouselItems[i].style.border = 'none';
+  }
+  carouselItems[count].style.border = '5px solid red';
+}
+
+function setBackgroundImage(ind) {
+  imageContainer.style.background =
+    "url('./img/contBcg-" + ind + ".jpeg') center/cover no-repeat";
+}

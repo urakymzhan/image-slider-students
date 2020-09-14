@@ -13,129 +13,121 @@
 // 4. Optional: You can show all images in small format under main image and store them inside "carousel" div.
 // This option is very broad that you can im plement so that when each small images clicked show it on main image div.
 // You can even implement border highlight(or any other effect) to specific small image when it is active on main div.
-let mainContainer = document.querySelector(".container")
-let imageTitle = document.querySelector(".car-name");
-let imageNode = document.querySelector(".img-container");
-let rightBtnNode = document.querySelector("#icon-right");
-let leftBtnNode = document.querySelector("#icon-left");
-let carouselNode = document.querySelector(".carousel");
-let playBtn = document.querySelector("#playBtn");
-let stopBtn = document.querySelector("#stopBtn");
+let mainContainer = document.querySelector('.container');
+let imageTitle = document.querySelector('.car-name');
+let imageNode = document.querySelector('.img-container');
+let rightBtnNode = document.querySelector('#icon-right');
+let leftBtnNode = document.querySelector('#icon-left');
+let carouselNode = document.querySelector('.carousel');
+let playBtn = document.querySelector('#playBtn');
+let stopBtn = document.querySelector('#stopBtn');
 
-let vehicles = ["./img/contBcg-0.jpeg", "./img/contBcg-1.jpeg", "./img/contBcg-2.jpeg","./img/contBcg-4.jpeg"]
+let vehicles = [
+  './img/contBcg-0.jpeg',
+  './img/contBcg-1.jpeg',
+  './img/contBcg-2.jpeg',
+  './img/contBcg-4.jpeg',
+];
 
 let slides = [];
 let activeIndex = 0;
 
 drawCarousel();
 drawActiveImage(activeIndex);
-clickRightBtn(activeIndex)
-clickLeftBtn(activeIndex)
-
+// clickRightBtn(activeIndex);
+// clickLeftBtn(activeIndex);
 
 // FUNCTION FOR UI THE IMAGES IN THE CAROUSEL AND MAKE THEM CLICKABLE //
-
 function drawCarousel() {
   vehicles.forEach((el, index) => {
-    let oneImg = document.createElement("img");
-    oneImg.setAttribute("src", el);
+    let oneImg = document.createElement('img');
+    oneImg.setAttribute('src', el);
 
     oneImg.onclick = function () {
-        drawActiveImage(index);
-        // if(oneImg.classList.contains("border")){
-        //     oneImg.classList.remove("border")
-        // } else {
-        //     oneImg.classList.add("border")
-        // }
-               
+      drawActiveImage(index);
+      // if(oneImg.classList.contains("border")){
+      //     oneImg.classList.remove("border")
+      // } else {
+      //     oneImg.classList.add("border")
+      // }
     };
     carouselNode.appendChild(oneImg);
-    
-    return;
+
+    return; // **ULAN NOTE** you can delete this return. forEach always return undefined
   });
 }
 
 // WHEN CLICK TO SINGLE IMAGE IN THE CAROUSEL, IT IS DISPLAYED AS MAIN IMG //
 function drawActiveImage(index) {
   imageNode.style.backgroundImage = `url(${vehicles[index]})`;
-  
 }
-
-
 
 // click to right btn
-function clickRightBtn() {
-  rightBtnNode.addEventListener("click", function () {
-    console.log("right is clicked")
-    changeActiveIndexRight(activeIndex++);
-    console.log(activeIndex)
-   return 
-  });
-}
+// function clickRightBtn() {
+//   rightBtnNode.addEventListener('click', function () {
+//     console.log('right is clicked');
+//     changeActiveIndexRight(activeIndex++);
+//     console.log(activeIndex);
+//     return;
+//   });
+// }
+// **ULAN NOTE** not sure why you need extra function clickRightBtn and changeActiveIndexRight. Too much boilerplate code
+rightBtnNode.addEventListener('click', function () {
+  activeIndex++;
+  if (activeIndex === vehicles.length) {
+    activeIndex = 0;
+  }
+  drawActiveImage(activeIndex);
+});
 
 // click to left btn
-function clickLeftBtn(index) {
-    leftBtnNode.addEventListener("click", function () {
-        console.log("left is clicked")
-        changeActiveIndexLeft(activeIndex--);
-        console.log(activeIndex)
-       return 
-    });
+// function clickLeftBtn(index) {
+//   leftBtnNode.addEventListener('click', function () {
+//     console.log('left is clicked');
+//     changeActiveIndexLeft(activeIndex--);
+//     console.log(activeIndex);
+//     return;
+//   });
+// }
+// **ULAN NOTE** not sure why you need extra functions clickLeftBtn and changeActiveIndexLeft. Too much boilerplate code
+leftBtnNode.addEventListener('click', function () {
+  if (activeIndex === 0) {
+    activeIndex = vehicles.length;
   }
+  activeIndex--;
+  drawActiveImage(activeIndex);
+});
 
 // HELPER FUNCTION TO CHECK THE INDEX
-function changeActiveIndexRight(index){
-    drawActiveImage(index);
-     //   check i if is 0/
-    if( activeIndex === 0){
-        activeIndex++
-    }
+// function changeActiveIndexRight(index) {
+//   drawActiveImage(index);
+//   //   check i if is 0/
+//   if (activeIndex === 0) {
+//     activeIndex++;
+//   }
 
-    //if lastInd // negative
-    if (activeIndex === vehicles.length-1 || activeIndex === -1 ){
-        activeIndex = 0
-    }
-    if(activeIndex > vehicles.length-1){
-        activeIndex = 0
-    }
-    return activeIndex
-    
-}
-function changeActiveIndexLeft(index){
-    drawActiveImage(index);
-     //   check i if is 0/
-    if( activeIndex === 0 || activeIndex === -1){
-        activeIndex =  vehicles.length-1
-    }
+//   //if lastInd // negative
+//   if (activeIndex === vehicles.length - 1 || activeIndex === -1) {
+//     activeIndex = 0;
+//   }
+//   if (activeIndex > vehicles.length - 1) {
+//     activeIndex = 0;
+//   }
+//   return activeIndex;
+// }
+// function changeActiveIndexLeft(index) {
+//   drawActiveImage(index);
+//   //   check i if is 0/
+//   if (activeIndex === 0 || activeIndex === -1) {
+//     activeIndex = vehicles.length - 1;
+//   }
 
-    return activeIndex
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//   return activeIndex;
+// }
 
 // function addBorderToActive(el){
 //     el.classList.toggle("border")
 // }
-
-
 
 // // function drawImg(){
 // //     for(let i = vehicles.length; i >=0; i--){
@@ -144,19 +136,14 @@ function changeActiveIndexLeft(index){
 // //             let prevImg = document.createElement("div");
 // //             prevImg.classList.add("img-container");
 // //             prevImg.style.backgroundUrl = vehicles[i];
-            
 
 // //             mainContainer.appendChild(prevImg)
 // //             return
-            
+
 // //         })
 // //     }
 // // }
 // // drawImg()
-
-
-
-
 
 // let vehicles = ["./img/contBcg-0.jpeg", "./img/contBcg-1.jpeg", "./img/contBcg-2.jpeg","./img/contBcg-4.jpeg"]
 // function getSrc(el){
@@ -170,18 +157,16 @@ function changeActiveIndexLeft(index){
 //                 imageNode.setAttribute("src", vehicles[i+1] )
 //             }
 //         }
-//     }) 
+//     })
 // }
 // slideRight()
-
-
 
 // let vehicles =[
 //     {
 //         carId = 1,
 //         title: "car 1",
 //         carImg: "./img/contBcg-0.jpeg",
-// //         active = true  
+// //         active = true
 //     },
 //     {
 //         carId = 2,
@@ -214,4 +199,3 @@ function changeActiveIndexLeft(index){
 // }
 
 // drawCarousel();
-

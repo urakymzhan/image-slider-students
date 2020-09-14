@@ -99,7 +99,7 @@ images.forEach((img, index) => {
   imgTag.setAttribute('src', img);
   imgTag.addEventListener('click', function () {
     counter = index;
-    imageContainer.style.backgroundImage = `url(${images[index]})`;
+    setBackground(index);
   });
 });
 
@@ -108,7 +108,7 @@ iconRight.addEventListener('click', function () {
   if (counter === images.length) {
     counter = 0;
   }
-  imageContainer.style.backgroundImage = `url(${images[counter]})`;
+  setBackground(counter);
 });
 
 iconLeft.addEventListener('click', function () {
@@ -116,7 +116,7 @@ iconLeft.addEventListener('click', function () {
     counter = images.length;
   }
   counter--;
-  imageContainer.style.backgroundImage = `url(${images[counter]})`;
+  setBackground(counter);
 });
 
 var timer;
@@ -126,12 +126,16 @@ playBtn.addEventListener('click', function () {
     if (counter === images.length) {
       counter = 0;
     }
-    imageContainer.style.backgroundImage = `url(${images[counter]})`;
+    setBackground(counter);
   }, 1000);
 });
 
 stopBtn.addEventListener('click', function () {
   clearInterval(timer);
 });
+
+function setBackground(ind) {
+  imageContainer.style.backgroundImage = `url(${images[ind]})`;
+}
 
 // Here you can add more functionalities...

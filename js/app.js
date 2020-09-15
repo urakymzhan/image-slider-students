@@ -79,12 +79,7 @@ leftIcon.addEventListener('click', function () {
     counter = carData.length;
   }
   counter--;
-  carData.forEach((data) => {
-    if (data.id === counter) {
-      imageContainer.style.backgroundImage = data.image;
-      carNamesDiv.textContent = data.name;
-    }
-  });
+  setData(counter);
 });
 
 rightIcon.addEventListener('click', function () {
@@ -92,12 +87,7 @@ rightIcon.addEventListener('click', function () {
   if (counter === carData.length) {
     counter = 0;
   }
-  carData.forEach((data) => {
-    if (data.id === counter) {
-      imageContainer.style.backgroundImage = data.image;
-      carNamesDiv.textContent = data.name;
-    }
-  });
+  setData(counter);
 });
 
 // timers
@@ -108,18 +98,22 @@ playBtn.addEventListener('click', function () {
     if (counter === carData.length) {
       counter = 0;
     }
-    carData.forEach((data) => {
-      if (data.id === counter) {
-        imageContainer.style.backgroundImage = data.image;
-        carNamesDiv.textContent = data.name;
-      }
-    });
+    setData(counter);
   }, 1000);
 });
 
 stopBtn.addEventListener('click', function () {
   clearInterval(timer);
 });
+
+function setData(count) {
+  carData.forEach((data) => {
+    if (data.id === count) {
+      imageContainer.style.backgroundImage = data.image;
+      carNamesDiv.textContent = data.name;
+    }
+  });
+}
 
 // Next steps:
 // - add carousel images

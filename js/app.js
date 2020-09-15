@@ -120,3 +120,8 @@ playBtn.addEventListener('click', function () {
 stopBtn.addEventListener('click', function () {
   clearInterval(timer);
 });
+
+// Next steps:
+// - add carousel images
+// - when clicked on carousel that image should appear on image container
+// - optional: add borders to active images

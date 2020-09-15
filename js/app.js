@@ -16,167 +16,274 @@
 let data = [
   {
     name: 'Mersedes-Benz',
-    src: './img/contBcg-0.jpeg'
+    src: './img/contBcg-0.jpeg',
   },
   {
     name: 'Mersedes-Benz collection',
-    src: './img/contBcg-1.jpeg'
+    src: './img/contBcg-1.jpeg',
   },
   {
     name: 'BMW',
-    src: './img/contBcg-2.jpeg'
+    src: './img/contBcg-2.jpeg',
   },
   {
     name: 'Audi',
-    src: './img/contBcg-3.jpeg'
+    src: './img/contBcg-3.jpeg',
   },
   {
     name: 'Dodge Charger',
-    src: './img/contBcg-4.jpeg'
-  }
+    src: './img/contBcg-4.jpeg',
+  },
 ];
 
-let carousel = document.querySelector('.carousel')
-let container = document.querySelector('.img-container')
-  container.setAttribute('data-id', 0)
-let left = document.querySelector('.btn-left')
-let right = document.querySelector('.btn-right')
-let carName = document.querySelector('.car-name')
+let carousel = document.querySelector('.carousel');
+let container = document.querySelector('.img-container');
+container.setAttribute('data-id', 0);
+let left = document.querySelector('.btn-left');
+let right = document.querySelector('.btn-right');
+let carName = document.querySelector('.car-name');
 
-/** displaying imgs on collection UI */  
+/** displaying imgs on collection UI */
 
+// for (let i = 0; i < data.length; i++) {
+//   let pic = document.createElement('img');
+//   pic.className = 'images';
+//   pic.src = data[i].src;
+//   pic.setAttribute('data-id', i);
+//   carousel.appendChild(pic);
+// }
+// /** ******************** */
+// let img = document.querySelectorAll('.images');
+
+// //picking images from collection
+
+// carousel.addEventListener('click', (e) => {
+//   if (e.target.nodeName !== 'IMG') {
+//     return;
+//   }
+//   let id = e.target.getAttribute('data-id');
+//   img.forEach(function (item) {
+//     item.classList.remove('new');
+//   });
+//   e.target.classList.add('new');
+//   container.style.background =
+//     'url(' + e.target.src + ') center/cover no-repeat';
+//   container.setAttribute('data-id', id);
+//   carName.innerText = data[id].name;
+// });
+
+// /* ******* Right control ************** */
+
+// right.addEventListener('click', (e) => {
+//   let curr = container.getAttribute('data-id');
+//   let next = img[curr].nextSibling;
+
+//   if (container.getAttribute('data-id') == img.length - 1) {
+//     container.setAttribute('data-id', 0);
+//     curr = 0;
+//     container.style.background =
+//       'url(' + img[curr].src + ') center/cover no-repeat';
+//     carName.innerText = data[img[curr].getAttribute('data-id')].name;
+//   }
+
+//   img.forEach(function (item) {
+//     item.classList.remove('new');
+//   });
+//   next.classList.add('new');
+
+//   container.setAttribute('data-id', next.getAttribute('data-id'));
+//   container.style.background = 'url(' + next.src + ') center/cover no-repeat';
+//   carName.innerText = data[next.getAttribute('data-id')].name;
+// });
+
+// /** ******* Left control  **************/
+
+// left.addEventListener('click', (e) => {
+//   let curr = container.getAttribute('data-id');
+//   let next = img[curr].previousSibling;
+
+//   if (container.getAttribute('data-id') == 0) {
+//     container.setAttribute('data-id', img.length - 1);
+//     curr = img.length - 1;
+//     container.style.background =
+//       'url(' + img[curr].src + ') center/cover no-repeat';
+//     console.log(img[curr]);
+//     img[curr].classList.add('new');
+//     carName.innerText = data[img[curr].getAttribute('data-id')].name;
+//   }
+
+//   img.forEach(function (item) {
+//     item.classList.remove('new');
+//   });
+//   next.classList.add('new');
+
+//   container.setAttribute('data-id', next.getAttribute('data-id'));
+//   container.style.background = 'url(' + next.src + ') center/cover no-repeat';
+//   carName.innerText = data[next.getAttribute('data-id')].name;
+// });
+
+// /** ********************** */
+// let play = document.querySelector('#playBtn');
+// let stop = document.querySelector('#stopBtn');
+// let playWrapper = document.querySelector('.play-wrapper');
+
+// playWrapper.addEventListener('click', function (e) {
+//   if (e.target == playWrapper.children[0]) {
+//     function playBtn() {
+//       let curr = container.getAttribute('data-id');
+//       let next = img[curr].nextSibling;
+
+//       if (container.getAttribute('data-id') == img.length - 1) {
+//         container.setAttribute('data-id', 0);
+//         curr = 0;
+//         container.style.background =
+//           'url(' + img[curr].src + ') center/cover no-repeat';
+//         carName.innerText = data[img[curr].getAttribute('data-id')].name;
+//       }
+
+//       img.forEach(function (item) {
+//         item.classList.remove('new');
+//       });
+//       next.classList.add('new');
+
+//       container.setAttribute('data-id', next.getAttribute('data-id'));
+//       container.style.background =
+//         'url(' + next.src + ') center/cover no-repeat';
+//       carName.innerText = data[next.getAttribute('data-id')].name;
+//     }
+//     setInterval(playBtn, 1000);
+//   }
+
+//   // if (e.target == playWrapper.children[1]) {
+//   //   console.log('asfd')
+//   // }
+// });
+
+//   ** ULANS NOTE BELOW**
+
+// carousel
 for (let i = 0; i < data.length; i++) {
-  let pic = document.createElement('img')
-  pic.className = 'images'
-  pic.src = data[i].src
-  pic.setAttribute('data-id', i)
-  carousel.appendChild(pic)
+  //   console.log(i);
+  let pic = document.createElement('img');
+  pic.className = 'images';
+  pic.src = data[i].src;
+  pic.setAttribute('data-id', i);
+  carousel.appendChild(pic);
 }
-/** ******************** */
-let img = document.querySelectorAll('.images')
 
+// all carousel images
+let img = document.querySelectorAll('.images');
+
+let id = 0;
+
+// set inital name
+carName.innerText = data[id].name;
 
 //picking images from collection
-
-carousel.addEventListener('click', (e)=>{
+carousel.addEventListener('click', (e) => {
   if (e.target.nodeName !== 'IMG') {
-    return 
+    return;
   }
-  let id = e.target.getAttribute('data-id')
-  img.forEach(function(item){
-    item.classList.remove('new')  
-  })
-  e.target.classList.add('new'); 
-  container.style.background = 'url(' + e.target.src + ') center/cover no-repeat'
-  container.setAttribute('data-id',id)
-  carName.innerText = data[id].name
-})
+  id = e.target.getAttribute('data-id');
 
-/* ******* Right control ************** */
-
-  right.addEventListener('click', (e)=> {
-  let curr = container.getAttribute('data-id')
-  let next = img[curr].nextSibling
-
-  if (container.getAttribute('data-id') == img.length - 1) {
-    container.setAttribute('data-id', 0)
-    curr = 0    
-    container.style.background = 'url(' + img[curr].src +') center/cover no-repeat'
-    carName.innerText = data[img[curr].getAttribute('data-id')].name
-  }
-
-  
-  img.forEach(function(item){
-    item.classList.remove('new')  
-  })
-    next.classList.add('new')
-  
-
-  container.setAttribute('data-id', next.getAttribute('data-id'))
-  container.style.background = 'url(' + next.src +') center/cover no-repeat'
-  carName.innerText = data[next.getAttribute('data-id')].name
-})
-
-/** ******* Left control  **************/
-
-
-left.addEventListener('click', (e)=> {
-  let curr = container.getAttribute('data-id')
-  let next = img[curr].previousSibling
-  
-  if (container.getAttribute('data-id') == 0) {
-    container.setAttribute('data-id', img.length-1)
-    curr = img.length-1    
-    container.style.background = 'url(' + img[curr].src +') center/cover no-repeat'
-    console.log(img[curr])
-    img[curr].classList.add('new')
-    carName.innerText = data[img[curr].getAttribute('data-id')].name
-  }
-
-
-  img.forEach(function(item){
-    item.classList.remove('new')  
-  })
-    next.classList.add('new')
-  
-
-  container.setAttribute('data-id', next.getAttribute('data-id'))
-  container.style.background = 'url(' + next.src +') center/cover no-repeat'
-  carName.innerText = data[next.getAttribute('data-id')].name
-})
-
-
-/** ********************** */
-let play = document.querySelector('#playBtn')
-let stop = document.querySelector('#stopBtn')
-let playWrapper = document.querySelector('.play-wrapper')
-
-
-
-playWrapper.addEventListener('click', function(e){
-  if (e.target == playWrapper.children[0]) {
-    function playBtn(){
-      let curr = container.getAttribute('data-id')
-      let next = img[curr].nextSibling
-      
-      
-      if (container.getAttribute('data-id') == img.length - 1) {
-        container.setAttribute('data-id', 0)
-        curr = 0    
-        container.style.background = 'url(' + img[curr].src +') center/cover no-repeat'
-        carName.innerText = data[img[curr].getAttribute('data-id')].name
-      }
-      
-      
-      img.forEach(function(item){
-        item.classList.remove('new')  
-      })
-      next.classList.add('new')
-      
-      
-      container.setAttribute('data-id', next.getAttribute('data-id'))
-      container.style.background = 'url(' + next.src +') center/cover no-repeat'
-      carName.innerText = data[next.getAttribute('data-id')].name
+  img.forEach(function (item) {
+    item.classList.remove('new');
+    if (id === item.getAttribute('data-id')) {
+      item.classList.add('new');
     }
-    setInterval(playBtn, 1000) 
+  });
 
+  container.style.background =
+    'url(' + e.target.src + ') center/cover no-repeat';
+  container.setAttribute('data-id', id);
+  carName.innerText = data[id].name;
+});
+
+// right, left controls
+right.addEventListener('click', (e) => {
+  let curr = container.getAttribute('data-id');
+  id = curr;
+  let next = img[id].nextSibling;
+  if (id == img.length - 1) {
+    next = img[id];
   }
+  img.forEach(function (item) {
+    item.classList.remove('new');
+    if (id === item.getAttribute('data-id')) {
+      item.classList.add('new');
+    }
+  });
+  container.setAttribute('data-id', next.getAttribute('data-id'));
+  container.style.background =
+    'url(' + img[id].src + ') center/cover no-repeat';
+  carName.innerText = data[id].name;
 
+  if (id == img.length - 1) {
+    container.setAttribute('data-id', 0);
+    id = 0;
+  }
+});
 
+left.addEventListener('click', (e) => {
+  let curr = container.getAttribute('data-id');
+  id = curr;
+  let next = img[id].previousSibling;
 
+  if (id == 0) {
+    next = img[id];
+  }
+  img.forEach(function (item) {
+    item.classList.remove('new');
+    if (id === item.getAttribute('data-id')) {
+      item.classList.add('new');
+    }
+  });
+  container.setAttribute('data-id', next.getAttribute('data-id'));
+  container.style.background =
+    'url(' + img[id].src + ') center/cover no-repeat';
+  carName.innerText = data[id].name;
 
+  if (id == 0) {
+    container.setAttribute('data-id', img.length - 1);
+    id = img.length - 1;
+  }
+});
 
+// THIS PART IS TOO MUCH TO CHECK. PLEASE WRITE SIMPLER CODE
 
+// play, stop controls
+// let play = document.querySelector('#playBtn');
+// let stop = document.querySelector('#stopBtn');
+// let playWrapper = document.querySelector('.play-wrapper');
 
+// playWrapper.addEventListener('click', function (e) {
+//   if (e.target == playWrapper.children[0]) {
+//     function playBtn() {
+//       let curr = container.getAttribute('data-id');
+//       let next = img[curr].nextSibling;
 
+//       if (container.getAttribute('data-id') == img.length - 1) {
+//         container.setAttribute('data-id', 0);
+//         curr = 0;
+//         container.style.background =
+//           'url(' + img[curr].src + ') center/cover no-repeat';
+//         carName.innerText = data[img[curr].getAttribute('data-id')].name;
+//       }
 
+//       img.forEach(function (item) {
+//         item.classList.remove('new');
+//       });
+//       next.classList.add('new');
 
+//       container.setAttribute('data-id', next.getAttribute('data-id'));
+//       container.style.background =
+//         'url(' + next.src + ') center/cover no-repeat';
+//       carName.innerText = data[next.getAttribute('data-id')].name;
+//     }
+//     setInterval(playBtn, 1000);
+//   }
 
-
-
-
-
-  // if (e.target == playWrapper.children[1]) {
-  //   console.log('asfd')
-  // }
-})
+// if (e.target == playWrapper.children[1]) {
+//   console.log('asfd')
+// }
+// });

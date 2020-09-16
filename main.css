@@ -2,6 +2,9 @@
   --mainWhite: #f2fdff;
   --mainBlue: #3e92cc;
 }
+* {
+  box-sizing: border-box;
+}
 
 .max-height {
   min-height: 100vh;

@@ -104,3 +104,14 @@ function stopRotate() {
   stopLabel.className = 'selected-button';
   clearInterval(myInterval);
 }
+
+// ** ULANS NOTE **
+
+// Next add something like this:
+// carousel.addEventListener('click', function (e) {
+//     if (e.target.nodeName !== 'IMG') {
+//       return;
+//     }
+//     console.log(currentImg);
+//     mainImage.style.background = `url(${e.target.src}) center/cover no-repeat`;
+//   });

@@ -19,7 +19,7 @@ body {
 }
 .img-container {
   min-height: 40vh;
-  background: url('./img/contBcg-0.jpeg') center/cover no-repeat;
+  /* background: url('./img/contBcg-0.jpeg') center/cover no-repeat; */
   border: 0.1rem solid var(--mainBlue);
   border-bottom: 1rem solid var(--mainBlue);
   border-radius: 1rem;
@@ -46,7 +46,8 @@ body {
   box-shadow: 0 0 3px 3px lightskyblue;
 }
 
-.btn-left, .btn-right {
+.btn-left,
+.btn-right {
   position: absolute;
   top: 50%;
   cursor: pointer;
@@ -59,12 +60,14 @@ body {
   right: 0;
   transform: translate(50%, -50%);
 }
-#icon-left, #icon-right {
+#icon-left,
+#icon-right {
   border: 1px solid var(--mainBlue);
   border-radius: 50%;
-  margin: 0 7px
+  margin: 0 7px;
 }
-#icon-left:hover, #icon-right:hover {
+#icon-left:hover,
+#icon-right:hover {
   border-color: var(--mainWhite);
 }
 .play-wrapper {
@@ -72,7 +75,8 @@ body {
   border-bottom: 1px solid gray;
   color: gray;
 }
-#playBtn, #stopBtn {
+#playBtn,
+#stopBtn {
   margin: 0.2rem;
   cursor: pointer;
 }
